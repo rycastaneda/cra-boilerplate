@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Rating from 'react-rating';
 import { getPerson } from '../actions/people';
 
-const Person = ({personid, dispatch}) => {
+const Person = ({ personid, dispatch }) => {
     const person = dispatch(getPerson(personid));
     if (!person.id) {
         return (
@@ -54,10 +54,15 @@ const Person = ({personid, dispatch}) => {
             </div>
         </div>
     );
-}
+};
 
 function mapStateToProps() {
     return {};
 }
+
+Person.propTypes = {
+    dispatch: PropTypes.func,
+    personid: PropTypes.string
+};
 
 export default connect(mapStateToProps)(Person);

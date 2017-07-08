@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { viewPerson, searchPeople } from '../actions/people';
 import { browserHistory } from 'react-router';
@@ -7,7 +7,7 @@ class Sidebar extends Component {
     componentDidMount() {
         this.props.dispatch(searchPeople(''));
     }
-    viewPerson (person) {
+    viewPerson(person) {
         this.props.dispatch(viewPerson(person));
         browserHistory.push(`/people/${person.id}`);
     }
@@ -29,9 +29,15 @@ class Sidebar extends Component {
                     {people}
                 </ul>
             </div>
-        )
+        );
     }
 }
+
+Sidebar.propTypes = {
+    dispatch: PropTypes.func,
+    people: PropTypes.array,
+    person: PropTypes.object
+};
 
 function mapStateToProps(state) {
     const { people, person } = state;
@@ -39,7 +45,7 @@ function mapStateToProps(state) {
         return { people: people.data, person };
     }
 
-    return {people: [], person};
+    return { people: [], person };
 }
 
 export default connect(mapStateToProps)(Sidebar);

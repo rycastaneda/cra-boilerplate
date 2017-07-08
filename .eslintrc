@@ -5,6 +5,7 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "impliedStrict": true,
+      "experimentalObjectRestSpread": true,
       "jsx": true
     }
   },
@@ -37,6 +38,7 @@
     "keyword-spacing": ["error", {"before": true}],
     "max-nested-callbacks": ["error", 5],
     "no-extra-semi": ["error"],
+    "no-console": ["error", { allow: ["log"] }],
     "no-template-curly-in-string": ["error"],
     "no-unused-vars": ["error", {"vars": "all", "args": "after-used"}],
     "no-use-before-define": ["error", {"functions": false}],

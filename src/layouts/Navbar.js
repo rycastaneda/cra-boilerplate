@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { searchPeople } from '../actions/people';
 import { connect } from 'react-redux';
@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 class Navbar extends Component {
     searchPerson(e) {
         e.preventDefault();
-        console.log("this.textInput.value", this.textInput.value);
         this.props.dispatch(searchPeople(this.textInput.value));
     }
     render() {
@@ -22,7 +21,13 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                   <form className="navbar-form navbar-left" role="search" onSubmit={this.searchPerson.bind(this)}>
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Search" ref={(input) => { this.textInput = input; }} />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search"
+                        ref={(input) => {
+                            this.textInput = input;
+                        }} />
                     </div>
                     <button type="submit" className="btn btn-default">Submit</button>
                   </form>
@@ -32,6 +37,10 @@ class Navbar extends Component {
         );
     }
 }
+
+Navbar.propTypes = {
+    dispatch: PropTypes.func
+};
 
 function mapStateToProps() {
     return {};

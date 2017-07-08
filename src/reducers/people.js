@@ -15,7 +15,7 @@ export function people(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 data: action.people
-            }
+            };
         default:
             return state;
     }

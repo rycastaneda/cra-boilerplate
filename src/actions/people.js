@@ -9,7 +9,7 @@ export function viewPerson(person) {
     return {
         type: VIEW_PERSON,
         person
-    }
+    };
 }
 
 export function searchPeople(query) {
@@ -20,8 +20,9 @@ export function searchPeople(query) {
         });
 
         let people = data.People;
+
         if (query) {
-            people = people.filter(person => {
+            people = people.filter((person) => {
                 return person.name.toLowerCase().includes(query.toLowerCase());
             });
         }
@@ -30,16 +31,24 @@ export function searchPeople(query) {
             type: RECEIVE_PEOPLE,
             people
         });
-    }
+
+    };
 }
 
-export function getPerson (id) {
+
+export function getPerson(id) {
     return (dispatch, getState) => {
-        let filtered = data.People.filter(person => {
+        let peopleState = getState().people;
+
+        if (!peopleState.data) {
+            return [];
+        }
+
+        let filtered = peopleState.data.filter((person) => {
             return person.id === +id;
         }).pop();
 
 
         return filtered;
-    }
+    };
 }
